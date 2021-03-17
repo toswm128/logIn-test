@@ -1,5 +1,6 @@
 import React from "react";
 import Home from "../pages/Home"
+import LogIn from "../pages/LogIn"
 import Error from "../pages/Error"
 import {
   BrowserRouter as Router,
@@ -13,6 +14,9 @@ function App() {
       <Switch>
       <Route exact path="/">
         <Home />
+      </Route>
+      <Route path="/Login">
+        <LogIn />
       </Route>
       <Route component={Error}>
         <Error />
