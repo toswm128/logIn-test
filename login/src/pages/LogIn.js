@@ -2,15 +2,21 @@ import React,{useState} from  "react"
 import axios  from "axios"
 import useInput from "../Hooks/useInput"
 
-const getLog = async (data) =>{
-    const server = await axios.post("https://noons.herokuapp.com/signin",data).catch((error)=>{
-        const errorCode = error.response.status;
-        console.log(errorCode);
-        if(errorCode === 400)
-            console.log("로그인 실패 바보")
-    });
-}
+let isLogIn = false
 
+const getLog = async (data) =>{
+    try{   
+        const server = await axios.post("https://noons.herokuapp.com/signin",data)
+        console.log(server)
+        alert("로그인 성공!")
+    }catch(error){
+            const errorCode = error.response.status;
+            console.log(errorCode);
+            alert("로그인 실패 바보")
+        
+    }
+    }
+    
 export default function Login(){
 
     const id = useInput()
