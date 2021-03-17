@@ -1,0 +1,10 @@
+@media (max-width: 1200px){
+    body{
+        background-color: whitesmoke;
+    }
+}
+@media (max-width: 500px){
+    body{
+        background-color: ivory;
+    }
+}
