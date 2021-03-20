@@ -2,12 +2,11 @@ import React from  "react"
 import axios  from "axios"
 import useInput from "../Hooks/useInput"
 import useCheck from "../Hooks/useCheck"
-import useRef from "react"
 
 let isLogIn = false
 
 
-export const savelog = (data,check) =>{
+const savelog = (data,check) =>{
     const idItem = data.userId;
     const checkItem = check.check
     localStorage.setItem("id",idItem);
@@ -41,6 +40,12 @@ const loadId = () =>{
     return {saveLogin,saveId}
 }
 
+const keyDown = (e,data,checked) =>{
+    if(e.key === "Enter")
+        getLog(data,checked)
+
+}
+
 export default function Login(){
     console.log(loadId().saveId)
     const id = useInput(loadId().saveId)
@@ -54,8 +59,8 @@ export default function Login(){
     
     return(
         <>
-            <input type="text" {...id} placeholder="id" />
-            <input type="password" {...pwd} placeholder="password" />
+            <input type="text" {...id} placeholder="id" onKeyDown={e=>keyDown(e,data,checked)}/>
+            <input type="password" {...pwd} placeholder="password" onKeyDown={e=>keyDown(e,data,checked)} />
             <button onClick={()=>{getLog(data,checked)}}
             >제출</button>
             <div>
