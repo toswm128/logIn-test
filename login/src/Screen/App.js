@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "../pages/Home"
 import LogIn from "../pages/LogIn"
+import SignUp from "../pages/SignUp"
 import Error from "../pages/Error"
 import {
   BrowserRouter as Router,
@@ -15,8 +16,11 @@ function App() {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/Login">
+      <Route path="/LogIn">
         <LogIn />
+      </Route>
+      <Route path="/SignUp">
+        <SignUp />
       </Route>
       <Route component={Error}>
         <Error />

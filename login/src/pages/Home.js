@@ -11,7 +11,8 @@ function Home(){
             <button onClick={()=>{setcount(count + 1)}}>+</button>
         </div>
         <div>
-            <Link to="/login">logIn</Link>
+            <Link to="/logIn">logIn</Link><br />
+            <Link to="/SignUp">SignUp</Link>
         </div>
         </>
     )
