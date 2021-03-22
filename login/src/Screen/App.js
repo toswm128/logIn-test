@@ -1,8 +1,8 @@
 import React from "react";
-import Home from "../pages/Home"
-import LogIn from "../pages/LogIn"
-import SignUp from "../pages/SignUp"
-import Error from "../pages/Error"
+import Home from "../containers/HomeContainer"
+import LogIn from "../containers/LogInContainer"
+import SignUp from "../containers/SignUpContainer"
+import Error from "../containers/ErrorContainer"
 import {
   BrowserRouter as Router,
   Route,

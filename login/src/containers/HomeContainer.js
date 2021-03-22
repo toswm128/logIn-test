@@ -1,7 +1,7 @@
 import React,{useState} from "react"
 import {Link} from "react-router-dom"
 
-function Home(){
+function HomeContainer(){
     const [count, setcount] = useState(0);
 
     return(
@@ -18,4 +18,4 @@ function Home(){
     )
 }
 
-export default Home;
+export default HomeContainer;

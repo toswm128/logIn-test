@@ -7,7 +7,6 @@ export default function useInput(save){
             target:{value}
         } = event;
         setValue(value)
-        console.log(value)
     }
     return {value,onChange}
     

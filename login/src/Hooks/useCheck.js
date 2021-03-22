@@ -8,7 +8,6 @@ const useCheck = (defaultChecked) =>{
     const changeCheck = ()=>{
         setCheck(!check);
     }
-    console.log(check);
     useEffect(()=>{
         if(element.current){
             element.current.addEventListener("click",changeCheck)

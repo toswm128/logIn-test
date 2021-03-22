@@ -2,6 +2,7 @@ import React from  "react"
 import axios  from "axios"
 import useInput from "../Hooks/useInput"
 import useCheck from "../Hooks/useCheck"
+import Login from "../components/Login/Login.jsx"
 
 let isLogIn = false
 
@@ -46,8 +47,7 @@ const keyDown = (e,data,checked) =>{
 
 }
 
-export default function Login(){
-    console.log(loadId().saveId)
+export default function LogInContainer(){
     const id = useInput(loadId().saveId)
     const pwd = useInput("")
     const checked = useCheck(loadId().saveLogin)
@@ -58,16 +58,14 @@ export default function Login(){
     }
     
     return(
-        <>
-            <input type="text" {...id} placeholder="id" onKeyDown={e=>keyDown(e,data,checked)}/>
-            <input type="password" {...pwd} placeholder="password" onKeyDown={e=>keyDown(e,data,checked)} />
-            <button onClick={()=>{getLog(data,checked)}}
-            >제출</button>
-            <div>
-                아이디 저장
-                <input type="checkbox" defaultChecked={checked.check} ref={checked.element} onClick={()=>savelog(data,checked)} />
-            </div>
-            
-        </>
+        <Login 
+        id= {id}
+        pwd = {pwd}
+        data = {data}
+        checked = {checked}
+        keyDown = {keyDown}
+        getLog = {getLog}
+        savelog = {savelog}
+         />
     )
 }

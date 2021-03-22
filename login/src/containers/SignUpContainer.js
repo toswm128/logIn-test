@@ -15,7 +15,7 @@ const getLog = async (data) =>{
     }
 }
 
-export default function SignUp(){
+export default function SignUpContainer(){
     const id = useInput();
     const pwd = useInput();
     const name = useInput();
