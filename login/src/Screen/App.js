@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "../containers/HomeContainer"
-import LogIn from "../containers/LogInContainer"
+import LogIn from "../pages/LoginPage"
 import SignUp from "../containers/SignUpContainer"
 import Error from "../containers/ErrorContainer"
 import {

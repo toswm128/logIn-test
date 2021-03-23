@@ -1,0 +1,32 @@
+
+.Header{
+    width: 100%;
+    min-height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(40, 52, 105);
+}
+
+.Home{
+    width: 50%;
+    text-align: center;
+    color:white;
+    font-weight: 600;
+}
+
+.Login{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Sign{
+    color:white;
+    font-weight: 600;
+}
+
+.Log{
+    color:white;
+    font-weight: 600;
+}

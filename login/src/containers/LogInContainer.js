@@ -19,6 +19,7 @@ const getLog = async (data,check) =>{
     try{   
         const server = await axios.post("https://noons.herokuapp.com/signin",data)
         console.log(server)
+        localStorage.setItem("accessToken",server.data.token);
         alert("로그인 성공!")
         isLogIn = true;
     }catch(error){
