@@ -16,18 +16,6 @@ const savelog = (data,check,autoLoginChecked) =>{
     localStorage.setItem("autoLogin",JSON.stringify(autoChecked))
 }
 
-const autoLog = async () =>{
-    try{
-        const autoLogin = await axios.post("https://noons.herokuapp.com/autosignin",{
-            headers: {
-                Authorization: localStorage.getItem("accessToken")
-            }
-        })
-        console.log(autoLogin)
-    }catch(error){
-        console.log(error.response.status);
-    }
-}
 
 const getLog = async (data,check,handleClick,autoLoginChecked) =>{
     try{   
@@ -42,7 +30,7 @@ const getLog = async (data,check,handleClick,autoLoginChecked) =>{
         // console.log(error.response.status);
         alert("로그인 실패 바보")
     }
-    if(check.check){
+    if(check.check || autoLoginChecked.check){
     savelog(data,check,autoLoginChecked)
     }
 }
@@ -57,14 +45,13 @@ const loadId = () =>{
     return {saveLogin,saveId,autoLogin}
 }
 
-const keyDown = (e,data,checked) =>{
+const keyDown = (e,data,checked,handleClick,autoLoginChecked) =>{
     if(e.key === "Enter")
-        getLog(data,checked)
+        getLog(data,checked,handleClick,autoLoginChecked)
 
 }
 
 export default function LogInContainer(){
-    autoLog()
     const id = useInput(loadId().saveId)
     const pwd = useInput("")
     const checked = useCheck(loadId().saveLogin)
@@ -73,7 +60,7 @@ export default function LogInContainer(){
         userId:id.value,
         password:pwd.value
     }
-
+    
     let history = useHistory();
 
     const handleClick = () =>{

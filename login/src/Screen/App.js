@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "../containers/HomeContainer"
+import Home from "../pages/HomePage.jsx"
 import LogIn from "../pages/LoginPage"
 import SignUp from "../containers/SignUpContainer"
 import Error from "../containers/ErrorContainer"

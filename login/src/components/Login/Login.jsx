@@ -12,8 +12,8 @@ const Login = ({
                     로그인
                 </div>
                 <div className="input-form">
-                    <input className="login" type="text" {...id} placeholder="아이디" onKeyDown={e=>keyDown(e,data,checked)}/>
-                    <input className="login" type="password" {...pwd} placeholder="비밀번호" onKeyDown={e=>keyDown(e,data,checked)} />
+                    <input className="login" type="text" {...id} placeholder="아이디" onKeyDown={e=>keyDown(e,data,checked,handleClick,autoLoginChecked)}/>
+                    <input className="login" type="password" {...pwd} placeholder="비밀번호" onKeyDown={e=>keyDown(e,data,checked,handleClick,autoLoginChecked)} />
                     <div className="save-id">
                         <input id="check" type="checkbox" defaultChecked={checked.check} ref={checked.element} onClick={()=>savelog(data,checked,autoLoginChecked)} />
                         <label htmlFor="check">아이디 저장</label>
