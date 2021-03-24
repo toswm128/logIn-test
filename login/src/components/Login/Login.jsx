@@ -6,7 +6,7 @@ const Login = ({
     id,pwd,data,checked,keyDown,getLog,savelog
 }) =>{
     return(
-        <div class="FORM">
+        <div className="FORM">
             <div className="login-form">
                 <div className="title">
                     로그인
@@ -16,11 +16,11 @@ const Login = ({
                     <input className="login" type="password" {...pwd} placeholder="비밀번호" onKeyDown={e=>keyDown(e,data,checked)} />
                     <div className="save-id">
                         <input id="check" type="checkbox" defaultChecked={checked.check} ref={checked.element} onClick={()=>savelog(data,checked)} />
-                        <label for="check">아이디 저장</label>
+                        <label htmlFor="check">아이디 저장</label>
                     </div>
                     <div className="submit-form">
                         <div className="button">
-                            <button onClick={()=>{getLog(data,checked)}}>로그인</button>
+                            <button className="loginBtn" onClick={()=>{getLog(data,checked)}}>로그인</button>
                         </div>
                         <div className="sign-up">
                             <Link to="/SignUp">아이디가 없으신가요?</Link>

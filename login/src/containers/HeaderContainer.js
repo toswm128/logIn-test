@@ -1,13 +1,14 @@
 import React from "react"
+import useHeader from  "../Hooks/useHeader"
 import Header from "../components/common/Header/Header"
 
 
 const HeaderContainer = () =>{
-    const login = JSON.parse(localStorage.getItem("accessToken"))
-    
+    const isLogin = useHeader()
+    console.log(isLogin)
     return(
         <Header
-            login={login}
+            login={isLogin}
         />
     )
 }

@@ -21,6 +21,11 @@
     justify-content: space-evenly;
 }
 
+.User{
+    color:white;
+    font-weight: 600;
+}
+
 .Sign{
     color:white;
     font-weight: 600;
