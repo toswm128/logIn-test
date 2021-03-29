@@ -2,6 +2,7 @@ import React from "react";
 import Home from "../pages/HomePage.jsx"
 import LogIn from "../pages/LoginPage"
 import SignUp from "../containers/SignUpContainer"
+import Logout from "../containers/LogoutContainer"
 import Error from "../containers/ErrorContainer"
 import {
   BrowserRouter as Router,
@@ -22,6 +23,7 @@ function App() {
       <Route path="/SignUp">
         <SignUp />
       </Route>
+      <Route path="/logout" component={Logout} />
       <Route component={Error}>
         <Error />
       </Route>

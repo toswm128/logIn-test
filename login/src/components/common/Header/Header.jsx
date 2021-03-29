@@ -13,7 +13,8 @@ const Header = ({login}) =>{
                 </div>
             ):(
                 <div className="Login">
-                    <Link className="User" to="/User">내 정보</Link>
+                    <Link className="User" to="/User">내정보</Link>
+                    <Link className="User" to="/logout">로그아웃</Link>
                 </div> 
             )
             }
