@@ -1,6 +1,7 @@
-import React,{useState} from "react"
+import React,{useEffect,useState} from "react"
 import axios from "axios";
 import Home from "../components/Home/Home"
+import Posting from "../components/Posting/Posting"
 
 const getUsers = async () =>{
     try{
@@ -31,14 +32,40 @@ const autoLog = async () =>{
     }
 }
 
+const board = async () =>{
+    try{
+        const one = -1;
+        const posting = await axios.get(`https://noons.herokuapp.com/board?boardIds=[${one}]`,{
+            headers: {
+                'Authorization': localStorage.getItem("accessToken")
+            }
+        })
+        console.log(posting)
+        return posting;
+    }catch(error){
+        console.log(error.response.status);   
+    }
+}
+
 function HomeContainer(){
     // const autoLoginChecked = JSON.parse(localStorage.getItem("autoLogin"))
     // if(autoLoginChecked){
     //     autoLog().then(getUsers())
     // }
-    
+    const [posting, setPosting] = useState()
+    useEffect(()=>{
+        if(localStorage.getItem("accessToken") !== null){
+            setPosting(()=>{board()})
+        }else{
+            console.log("hi")
+        }
+    },)
+    console.log(posting)
     return(
-        <Home />
+        <>
+            <Home />
+            <Posting posting={posting} />
+        </>
     )
 }
 

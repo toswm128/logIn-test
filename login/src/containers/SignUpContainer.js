@@ -1,5 +1,6 @@
 import React from "react"
 import useInput from "../Hooks/useInput"
+import SignUp from "../components/SignUp/SignUp"
 import axios from "axios";
 
 const getLog = async (data) =>{
@@ -28,12 +29,13 @@ export default function SignUpContainer(){
     }
 
     return(
-        <div>
-            <input type="text" {...id} placeholder="id"/>
-            <input type="text" {...pwd} placeholder="pwd"/>
-            <input type="text" {...name} placeholder="name"/>
-            <input type="text" {...gender} placeholder="gender"/>
-            <button onClick={()=>{getLog(data)}}>제출</button>
-        </div>
+        <SignUp 
+            id={id}
+            pwd={pwd}
+            name={name}
+            gender={gender}
+            getLog={getLog}
+            data={data}
+        />
     )
 }

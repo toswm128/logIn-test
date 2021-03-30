@@ -69,15 +69,15 @@ export default function LogInContainer(){
     
     return(
         <Login 
-        id= {id}
-        pwd = {pwd}
-        data = {data}
-        checked = {checked}
-        keyDown = {keyDown}
-        getLog = {getLog}
-        savelog = {savelog}
-        handleClick = {handleClick}
-        autoLoginChecked = {autoLoginChecked}
+            id= {id}
+            pwd = {pwd}
+            data = {data}
+            checked = {checked}
+            keyDown = {keyDown}
+            getLog = {getLog}
+            savelog = {savelog}
+            handleClick = {handleClick}
+            autoLoginChecked = {autoLoginChecked}
          />
     )
 }

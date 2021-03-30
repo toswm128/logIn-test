@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "../pages/HomePage.jsx"
 import LogIn from "../pages/LoginPage"
-import SignUp from "../containers/SignUpContainer"
+import SignUp from "../pages/SignUpPage.jsx"
 import Logout from "../containers/LogoutContainer"
 import Error from "../containers/ErrorContainer"
 import {
