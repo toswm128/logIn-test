@@ -14,9 +14,11 @@ function Home({
                 <div className="banner">
                     <img className="banner" src={banner} alt="banner" />
                 </div>  
-                {
-                    posts.data.findBoard.map((post,key)=>{return<div className="posts" key={key}>{post.contents}</div>})
-                }
+                <div className="posts">
+                    {
+                        posts.data.findBoard.map((post,key)=>{return<div className="posting" key={key}>{post.contents}</div>})
+                    }
+                </div>
             </div>
 
         ):(

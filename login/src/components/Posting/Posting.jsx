@@ -1,10 +1,8 @@
 import React from "react"
 
-const Posting = ({posting,getBoard}) =>{
-    const Board = getBoard();
-    console.log(Board)
+const Posting = ({}) =>{
     return(
-        <div>{}a</div>
+        <div>a</div>
     )
 }
 

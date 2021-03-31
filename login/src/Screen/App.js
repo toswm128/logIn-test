@@ -3,6 +3,7 @@ import Home from "../pages/HomePage.jsx"
 import LogIn from "../pages/LoginPage"
 import SignUp from "../pages/SignUpPage.jsx"
 import Logout from "../containers/LogoutContainer"
+import Posting from "../pages/PostingPage"
 import Error from "../containers/ErrorContainer"
 import {
   BrowserRouter as Router,
@@ -22,6 +23,9 @@ function App() {
       </Route>
       <Route path="/SignUp">
         <SignUp />
+      </Route>
+      <Route path="/posting">
+        <Posting />
       </Route>
       <Route path="/logout" component={Logout} />
       <Route component={Error}>
