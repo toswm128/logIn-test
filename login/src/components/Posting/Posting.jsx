@@ -1,9 +1,10 @@
 import React from "react"
 
-const Posting = (posting) =>{
-    console.log(posting)
+const Posting = ({posting,getBoard}) =>{
+    const Board = getBoard();
+    console.log(Board)
     return(
-        <div>{posting[0]}</div>
+        <div>{}a</div>
     )
 }
 

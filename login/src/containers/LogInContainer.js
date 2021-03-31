@@ -20,9 +20,9 @@ const savelog = (data,check,autoLoginChecked) =>{
 const getLog = async (data,check,handleClick,autoLoginChecked) =>{
     try{   
         const server = await axios.post("https://noons.herokuapp.com/signin", data)
-        console.log(server)
+        console.log(server);
         localStorage.setItem("accessToken",server.data.token);
-        alert("로그인 성공!")
+        alert("로그인 성공!");
         handleClick()
     }
     catch(error){
