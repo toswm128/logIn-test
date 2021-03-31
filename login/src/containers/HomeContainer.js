@@ -45,7 +45,6 @@ function HomeContainer(){
             })
             setIsLoding(true)
 
-            console.log(posting)
             return posting;
         }catch(error){
             // console.log(error.response.status);   
@@ -66,8 +65,6 @@ function HomeContainer(){
             console.log(respon)
         })
     },[])
-    
-    console.log(posts)
     return(
         <>
             <Home 

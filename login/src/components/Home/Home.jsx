@@ -13,19 +13,14 @@ function Home({
             <div className="Home-body">
                 <div className="banner">
                     <img className="banner" src={banner} alt="banner" />
-                </div>
-                <div className ="link">
-                    <Link to="/logIn">logIn</Link>
-                    <Link to="/SignUp">SignUp</Link>
-                </div>
+                </div>  
                 {
-                    posts.data.findBoard.map((post,key)=>{return<div key={key}>{post.contents}</div>})
+                    posts.data.findBoard.map((post,key)=>{return<div className="posts" key={key}>{post.contents}</div>})
                 }
-                <div>{posts.data.findBoard[0].contents}</div>
             </div>
 
         ):(
-            <div>
+            <div className="Loding">
                 로딩
             </div>
         )}
