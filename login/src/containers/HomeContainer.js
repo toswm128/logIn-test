@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from "react"
 import axios from "axios";
 import Home from "../components/Home/Home"
-import Posting from "../components/Posting/Posting"
 
 // const getUsers = async () =>{
 //     try{
@@ -35,11 +34,11 @@ import Posting from "../components/Posting/Posting"
 function HomeContainer(){
     const [posts, setPosts] = useState([])
     const [isLoding, setIsLoding] = useState(true)
+    const one = -1;
     const getBoard = async () =>{
         try{
-            const one = -1;
             const posting = await axios.get(`https://noons.herokuapp.com/board?boardIds=[${one}]`,{
-                headers: {
+            headers: {
                     'Authorization': localStorage.getItem("accessToken")
                 }
             })
@@ -47,23 +46,34 @@ function HomeContainer(){
 
             return posting;
         }catch(error){
-            // console.log(error.response.status);   
+            console.log(error);
         }
     }
 
-    const isLogin = () =>{
-        if(localStorage.getItem("accessToken") !== null){
-            setPosts(()=>{getBoard()})
-        }else{
-            console.log("hi")
+    const getProfile = async () =>{
+        try{
+            const profile = await axios.get(`https://noons.herokuapp.com/user?selectuser=11&boardIds=[${one}]`,{
+                headers: {
+                    'Authorization': localStorage.getItem("accessToken")
+                }
+            })
+            console.log(profile)
+        }catch(error){
+            console.log("a")
         }
     }
+
+    
     useEffect(()=>{
-        getBoard().then((respon)=>{
-            setPosts(respon)
-            setIsLoding(false);
-            console.log(respon)
-        })
+        if(localStorage.getItem("accessToken") !== null){
+            getBoard().then((respon)=>{
+                setPosts(respon)
+                setIsLoding(false);
+                console.log(respon)
+                getProfile()
+            })
+            
+        }
     },[])
     return(
         <>

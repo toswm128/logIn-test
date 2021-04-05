@@ -16,14 +16,19 @@ function Home({
                 </div>  
                 <div className="posts">
                     {
-                        posts.data.findBoard.map((post,key)=>{return<div className="posting" key={key}>{post.contents}</div>})
+                        posts.data.findBoard.map((post,key)=>{return(
+                        <div className="posting" key={key}>
+                                <div className="contents">{post.contents}</div>
+                                <div className="userName">{post.user.userName}</div>
+                            </div>
+                        )})
                     }
                 </div>
             </div>
 
         ):(
             <div className="Loding">
-                로딩
+                Loding...
             </div>
         )}
         </>
