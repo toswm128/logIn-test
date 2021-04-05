@@ -7,8 +7,39 @@ const PostingContainer = () =>{
     const [profile, setProfile] = useState()
     const content = useInput("");
     const handelSubmit = () =>{
+        getProfile().then((user)=>{
+            setProfile(user);
+            postPosting(user)
+        })  
         console.log(content);
     }
+
+    const postPosting = async (user) =>{
+        try{
+            const Posting = await axios.post("https://noons.herokuapp.com/board",{
+                date:"2021-04-03T15:00:00.000Z", 
+                contents:content.value,
+                profile:user.data.user.profile,
+                files:null,
+                show:"all"
+            },{
+                headers: {
+                    'Authorization': localStorage.getItem("accessToken")
+                }
+            })
+            console.log(Posting)
+        }catch(err){
+            console.log(err)
+            console.log({
+                date:"2021-04-03T15:00:00.000Z", 
+                contents:content.value,
+                profile:user.data.user.profile,
+                files:null,
+                show:"all"
+            })
+        }
+    }
+
     const getProfile = async () =>{
         try{
             const user = await axios.get(`https://noons.herokuapp.com/user?selectuser=11&boardIds=[${-1}]`,{
@@ -22,18 +53,15 @@ const PostingContainer = () =>{
             console.log("a")
         }
     }
-
-    useEffect(()=>{
-      getProfile().then((user)=>{
-          setProfile(user);
-        })  
+    
+    useEffect(()=>{  
+        console.log(profile,"user");
     },[])
-    console.log(profile,"user");
-
+    
     return(
         <Posting content={content}
         handelSubmit={handelSubmit} />
     )
 }
-
-export default PostingContainer
+            
+            export default PostingContainer
