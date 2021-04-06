@@ -5,7 +5,9 @@ import banner from "../../styles/imgs/banner.png"
 
 function Home({
     posts,
-    isLoding
+    isLoding,
+    scrollPosts,
+    boardIds
 }){
     return(
         <>
@@ -20,16 +22,25 @@ function Home({
                         <div className="posting" key={key}>
                                 <div className="contents">{post.contents}</div>
                                 <div className="userName">{post.user.userName}</div>
+                                <div>{boardIds}</div>
                             </div>
                         )})
                     }
                 </div>
+                <div className="nextPosts">
+                    <button onClick={scrollPosts}>next</button>
+                </div>
             </div>
 
         ):(
+            <>
+            <div className="banner">
+                    <img className="banner" src={banner} alt="banner" />
+                </div> 
             <div className="Loding">
                 Loding...
             </div>
+            </>
         )}
         </>
     )

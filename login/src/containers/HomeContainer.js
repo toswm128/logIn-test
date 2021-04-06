@@ -34,10 +34,11 @@ import Home from "../components/Home/Home"
 function HomeContainer(){
     const [posts, setPosts] = useState([])
     const [isLoding, setIsLoding] = useState(true)
-    const one = -1;
+    const [boardIds, setBoardIds] = useState([-1])
+    
     const getBoard = async () =>{
         try{
-            const posting = await axios.get(`https://noons.herokuapp.com/board?boardIds=[${one}]`,{
+            const posting = await axios.get(`https://noons.herokuapp.com/board?boardIds=[${boardIds}]`,{
             headers: {
                     'Authorization': localStorage.getItem("accessToken")
                 }
@@ -50,18 +51,18 @@ function HomeContainer(){
         }
     }
 
-    const getProfile = async () =>{
-        try{
-            const profile = await axios.get(`https://noons.herokuapp.com/user?selectuser=11&boardIds=[${one}]`,{
-                headers: {
-                    'Authorization': localStorage.getItem("accessToken")
-                }
-            })
-            console.log(profile)
-        }catch(error){
-            console.log("a")
-        }
-    }
+    // const getProfile = async () =>{
+    //     try{
+    //         const profile = await axios.get(`https://noons.herokuapp.com/user?selectuser=11&boardIds=[${boardIds}]`,{
+    //             headers: {
+    //                 'Authorization': localStorage.getItem("accessToken")
+    //             }
+    //         })
+    //         console.log(profile)
+    //     }catch(error){
+    //         console.log("a")
+    //     }
+    // }
 
     
     useEffect(()=>{
@@ -70,16 +71,35 @@ function HomeContainer(){
                 setPosts(respon)
                 setIsLoding(false);
                 console.log(respon)
-                getProfile()
+                console.log(boardIds)
             })
-            
         }
     },[])
+    
+    const scrollPosts = () =>{
+            const ids = [];
+            posts.data.findBoard.map(parm=>{
+            ids.push(parm.boardId);
+        });
+        setBoardIds([
+            ...boardIds,
+            ...ids
+        ])
+        getBoard().then((respon)=>{
+            setPosts(respon)
+            setIsLoding(false);
+            console.log(respon)
+            console.log(boardIds)
+        })
+    }
+
     return(
         <>
             <Home 
             posts={posts} 
             isLoding={isLoding}
+            scrollPosts={scrollPosts}
+            boardIds={boardIds}
             />
         </>
     )
