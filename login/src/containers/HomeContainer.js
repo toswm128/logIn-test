@@ -38,6 +38,7 @@ function HomeContainer(){
     
     const getBoard = async () =>{
         try{
+            console.log(boardIds)
             const posting = await axios.get(`https://noons.herokuapp.com/board?boardIds=[${boardIds}]`,{
             headers: {
                     'Authorization': localStorage.getItem("accessToken")
@@ -65,34 +66,31 @@ function HomeContainer(){
     // }
 
     
-    useEffect(()=>{
-        if(localStorage.getItem("accessToken") !== null){
-            getBoard().then((respon)=>{
-                setPosts(respon)
-                setIsLoding(false);
-                console.log(respon)
-                console.log(boardIds)
-            })
-        }
-    },[])
+    
     
     const scrollPosts = () =>{
             const ids = [];
-            posts.data.findBoard.map(parm=>{
+            posts.forEach(parm=>{
             ids.push(parm.boardId);
         });
         setBoardIds([
             ...boardIds,
             ...ids
         ])
-        getBoard().then((respon)=>{
-            setPosts(respon)
-            setIsLoding(false);
-            console.log(respon)
-            console.log(boardIds)
-        })
     }
-
+    useEffect(()=>{
+        if(localStorage.getItem("accessToken") !== null){
+            getBoard().then((respon)=>{
+                setPosts([...posts,
+                    ...(respon.data.findBoard)
+                ])
+                setIsLoding(false);
+                console.log(respon)
+                console.log(boardIds)
+            })
+        }
+    },[boardIds])
+    
     return(
         <>
             <Home 

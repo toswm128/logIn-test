@@ -18,13 +18,17 @@ function Home({
                 </div>  
                 <div className="posts">
                     {
-                        posts.data.findBoard.map((post,key)=>{return(
-                        <div className="posting" key={key}>
+                        posts.map((post,key)=>{return(
+                            <div className="posting" key={key}>
                                 <div className="contents">{post.contents}</div>
-                                <div className="userName">{post.user.userName}</div>
-                                <div>{boardIds}</div>
+                                <div className="contents">{post.user.userName}</div>
+                                {console.log(post,key)}
                             </div>
                         )})
+
+                        // posts.map((post,key)=>{
+                        //     console.log(post,key,"from posts.map");
+                        // })
                     }
                 </div>
                 <div className="nextPosts">
