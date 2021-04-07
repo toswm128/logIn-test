@@ -19,13 +19,16 @@ function Home({
                 <div className="posts">
                     {
                         posts.map((post,key)=>{return(
-                            <div className="posting" key={key} onScroll={(e)=>{console.log(e.srcElement.body.scrollTop)}}>
+                            <div className="posting" key={key}>
                                 <div className="contents">작성자: {post.user.userName}</div>
                                 <div className="contents">{key+1}</div>
                                 <div className="contents">{post.contents}</div>
                             </div>
                         )})
                     }
+                </div>
+                <div className="nextPosts">
+                    <button onClick={scrollPosts}>next</button>
                 </div>
             </div>
 

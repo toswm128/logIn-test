@@ -1,7 +1,7 @@
 import React from "react"
 import "./Posting.css"
 
-const Posting = ({content,handelSubmit}) =>{
+const Posting = ({content,handelSubmit,handleClick}) =>{
     return(
         <div className="postingForm">
             <textarea className="posting-text" rows="10" {...content}/>

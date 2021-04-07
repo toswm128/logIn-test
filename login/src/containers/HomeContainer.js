@@ -33,18 +33,18 @@ import Home from "../components/Home/Home"
 
 function HomeContainer(){
     const [posts, setPosts] = useState([])
-    const [isLoding, setIsLoding] = useState(true)
+    const [isLoding, setIsLoding] = useState(false)
     const [boardIds, setBoardIds] = useState([-1])
     
     const getBoard = async () =>{
         try{
+            setIsLoding(true)
             console.log(boardIds)
             const posting = await axios.get(`https://noons.herokuapp.com/board?boardIds=[${boardIds}]`,{
             headers: {
                     'Authorization': localStorage.getItem("accessToken")
                 }
             })
-            setIsLoding(true)
 
             return posting;
         }catch(error){
@@ -77,7 +77,6 @@ function HomeContainer(){
             ...boardIds,
             ...ids
         ])
-        document.documentElement.scrollTop = 0;
     }
     useEffect(()=>{
         if(localStorage.getItem("accessToken") !== null){
@@ -92,6 +91,10 @@ function HomeContainer(){
         }
     },[boardIds])
 
+    useEffect(()=>{
+        console.log(isLoding)
+    },[isLoding])
+    
     const handleScroll = useCallback(() => {
         const { innerHeight } = window;
         // 브라우저창 내용의 크기 (스크롤을 포함하지 않음)
@@ -101,22 +104,26 @@ function HomeContainer(){
         
         const { scrollTop } = document.documentElement;
         // 현재 스크롤바의 위치
+
+        console.log(scrollTop,"////",innerHeight,"/////",Math.round(scrollTop + innerHeight)+1,"/////",scrollHeight)
         
-        if (Math.round(scrollTop + innerHeight) >= scrollHeight) {
-          // scrollTop과 innerHeight를 더한 값이 scrollHeight보다 크다면, 가장 아래에 도달했다는 의미이다.
-          console.log("end",scrollTop,innerHeight)
-          scrollPosts()
+        if (Math.round(scrollTop + innerHeight)+1 >= scrollHeight) {
+            // scrollTop과 innerHeight를 더한 값이 scrollHeight보다 크다면, 가장 아래에 도달했다는 의미이다.
+            if(!isLoding){
+                console.log("end",scrollTop,innerHeight)
+                scrollPosts()
+            }
         }
-      }, [posts]);
+      }, [boardIds]);
 
       useEffect(() => {
-        window.addEventListener('scroll', handleScroll, true);
-        // 스크롤이 발생할때마다 handleScroll 함수를 호출하도록 추가합니다.
-        
-        return () => {
-          window.removeEventListener('scroll', handleScroll, true);
-          // 해당 컴포넌트가 언마운트 될때, 스크롤 이벤트를 제거합니다.
-        };
+            window.addEventListener('scroll', handleScroll, true);
+            // 스크롤이 발생할때마다 handleScroll 함수를 호출하도록 추가합니다.
+            
+            return () => {
+            window.removeEventListener('scroll', handleScroll, true);
+            // 해당 컴포넌트가 언마운트 될때, 스크롤 이벤트를 제거합니다.
+            };
       }, [handleScroll]);
 
     

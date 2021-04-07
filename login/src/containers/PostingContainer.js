@@ -1,4 +1,5 @@
 import {React, useEffect, useState} from "react"
+import {useHistory} from "react-router-dom"
 import Posting from "../components/Posting/Posting"
 import useInput from "../Hooks/useInput"
 import axios from "axios"
@@ -17,19 +18,21 @@ const PostingContainer = () =>{
     const postPosting = async (user) =>{
         try{
             const Posting = await axios.post("https://noons.herokuapp.com/board",{
-                date:"2021-04-03T15:00:00.000Z", 
-                contents:content.value,
-                profile:user.data.user.profile,
-                files:null,
+                date:"2021-04-03", 
+                contents:"aa",
+                profile:0,
                 show:"all"
             },{
                 headers: {
-                    'Authorization': localStorage.getItem("accessToken")
+                    'Authorization': localStorage.getItem("accessToken"),
+                    "content-type":"multipart/form-data"
                 }
             })
             console.log(Posting)
+            handleClick()
         }catch(err){
-            console.log(err)
+            handleClick()
+            console.log(err.response)
             console.log({
                 date:"2021-04-03T15:00:00.000Z", 
                 contents:content.value,
@@ -57,6 +60,13 @@ const PostingContainer = () =>{
     useEffect(()=>{  
         console.log(profile,"user");
     },[])
+
+    let history = useHistory();
+
+    const handleClick = () =>{
+        history.push("/");
+      }
+    
     
     return(
         <Posting content={content}
