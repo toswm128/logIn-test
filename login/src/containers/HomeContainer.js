@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react"
+import React,{useEffect,useState,useCallback} from "react"
 import axios from "axios";
 import Home from "../components/Home/Home"
 
@@ -77,6 +77,7 @@ function HomeContainer(){
             ...boardIds,
             ...ids
         ])
+        document.documentElement.scrollTop = 0;
     }
     useEffect(()=>{
         if(localStorage.getItem("accessToken") !== null){
@@ -90,6 +91,34 @@ function HomeContainer(){
             })
         }
     },[boardIds])
+
+    const handleScroll = useCallback(() => {
+        const { innerHeight } = window;
+        // 브라우저창 내용의 크기 (스크롤을 포함하지 않음)
+        
+        const { scrollHeight } = document.body;
+        // 브라우저 총 내용의 크기 (스크롤을 포함한다)
+        
+        const { scrollTop } = document.documentElement;
+        // 현재 스크롤바의 위치
+        
+        if (Math.round(scrollTop + innerHeight) >= scrollHeight) {
+          // scrollTop과 innerHeight를 더한 값이 scrollHeight보다 크다면, 가장 아래에 도달했다는 의미이다.
+          console.log("end",scrollTop,innerHeight)
+          scrollPosts()
+        }
+      }, [posts]);
+
+      useEffect(() => {
+        window.addEventListener('scroll', handleScroll, true);
+        // 스크롤이 발생할때마다 handleScroll 함수를 호출하도록 추가합니다.
+        
+        return () => {
+          window.removeEventListener('scroll', handleScroll, true);
+          // 해당 컴포넌트가 언마운트 될때, 스크롤 이벤트를 제거합니다.
+        };
+      }, [handleScroll]);
+
     
     return(
         <>
